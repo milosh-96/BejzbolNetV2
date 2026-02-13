@@ -1,0 +1,9 @@
+{
+  "TitlePart": [
+    {
+      "contentType": [ "Page" ],
+      "path": [ "/","/naslovna" ],
+      "place": "-" // - is to hide
+    }
+  ]
+}

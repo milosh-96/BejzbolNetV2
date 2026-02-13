@@ -1,0 +1,28 @@
+@using System.Text.Json.Dynamic
+@using OrchardCore.ContentManagement.Display
+@inject OrchardCore.ContentManagement.Display.IContentItemDisplayManager ContentItemDisplayManager
+@{
+    ContentItem contentItem = Model.ContentItem;
+    var featuredItemsIds = (JsonDynamicArray)contentItem.Content.Glossary.Featured.ContentItemIds;
+    List<ContentItem> featuredItems = new List<ContentItem>(featuredItemsIds.Count);
+
+    foreach(JsonDynamicValue id in featuredItemsIds)
+    {
+        featuredItems.Add(await Orchard.GetContentItemByIdAsync(id.ToString()));
+    }
+}
+
+<div class="bg-primary text-accent py-16">
+    <div class="max-w-6xl mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">@contentItem.DisplayText</h1>
+        <p class="text-xl text-accent/90">
+            @await Orchard.MarkdownToHtmlAsync((string)contentItem.Content.MarkdownBodyPart.Markdown)
+        </p>
+    </div>
+</div>
+<main class="flex-grow">
+    <div class="bg-white py-12">
+        <shape Type="GlossaryShape" prop-GlossaryItems="featuredItems"></shape>
+    </div>
+</main>
+

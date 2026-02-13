@@ -1,0 +1,13 @@
+@using OrchardCore.Markdown.Models;
+@{
+    ContentItem contentItem = Model.ContentItem;
+    var description = (string)contentItem.Content.MarkdownBodyPart.Markdown;
+    var excerptField = contentItem.Content.GlossaryTerm.Excerpt;
+    var excerpt = excerptField is not null && excerptField.Text is not null ? (string)excerptField.Text : description.Split('.')[0];
+}
+<a display-for="@contentItem" class="glossaryItemSummary bg-accent p-4 rounded-lg border border-primary/10 hover:border-highlight transition-colors text-left">
+    <h3 class="glossaryItemSummary__title">@contentItem.DisplayText</h3>
+    <p class="text-sm text-text/70">
+        @await Orchard.MarkdownToHtmlAsync(excerpt)
+    </p>
+</a>

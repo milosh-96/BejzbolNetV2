@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary:#1B4332;
+    --color-accent: #F5F3E7;
+    --color-secondary: #B33F2A;
+    --color-highlight: #D9A441;
+    --color-text: #2B2B2B;
+}
+
+@layer base {
+    h1 {
+        font-size: var(--text-2xl);
+    }
+
+    h2 {
+        font-size: var(--text-1xl);
+    }
+    h3 {
+        font-size: var(--text-xl);
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.glossaryItemSummary__title {
+    @apply text-base font-bold text-secondary mb-2;
+}
+
+.footerLogo h3 {
+    @apply font-bold mb-4 text-accent/80;
+}

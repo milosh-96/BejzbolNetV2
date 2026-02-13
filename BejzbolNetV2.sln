@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36717.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BejzbolNetV2.Web", "BejzbolNetV2.Web\BejzbolNetV2.Web.csproj", "{E6CB89FE-BF64-441C-B0FC-85F007EBAF68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BejzbolNet.BaseballTourTheme", "BejzbolNet.BaseballTourTheme\BejzbolNet.BaseballTourTheme.csproj", "{38780325-C905-62FB-830A-A164299A6E37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6CB89FE-BF64-441C-B0FC-85F007EBAF68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6CB89FE-BF64-441C-B0FC-85F007EBAF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6CB89FE-BF64-441C-B0FC-85F007EBAF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6CB89FE-BF64-441C-B0FC-85F007EBAF68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38780325-C905-62FB-830A-A164299A6E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38780325-C905-62FB-830A-A164299A6E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38780325-C905-62FB-830A-A164299A6E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38780325-C905-62FB-830A-A164299A6E37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {061516F7-155D-45B7-B76D-FEB1B0D92292}
+	EndGlobalSection
+EndGlobal

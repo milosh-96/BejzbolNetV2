@@ -1,0 +1,25 @@
+@using System.Globalization
+<div class="contentCulturePicker bg-black md:bg-transparent md:absolute md:top-2 right-5">
+    <div class="flex py-2 px-6 justify-end space-x-2">
+        <a>
+            <img src="/BejzbolNet.BaseballTourTheme/images/@(Model.CurrentCulture.TwoLetterISOLanguageName).png" alt="@Model.CurrentCulture.NativeName" />
+        </a>
+        <div>
+            @foreach (CultureInfo culture in Model.SupportedCultures)
+            {
+                if (culture.Name == Model.CurrentCulture.Name)
+                {
+                    continue;
+                }
+                <a asp-route="RedirectToLocalizedContent"
+                   asp-route-area="OrchardCore.ContentLocalization"
+                   asp-route-targetCulture="@culture.Name"
+                   asp-route-contentItemUrl="@Context.Request.Path.Value"
+                   asp-route-queryStringValue="@Context.Request.QueryString.Value"
+                   class="dropdown-item">
+                    <img class="grayscale hover:grayscale-50" src="/BejzbolNet.BaseballTourTheme/images/@(culture.TwoLetterISOLanguageName).png" alt="@culture.NativeName" />
+                </a>
+            }
+        </div>
+    </div>
+</div>

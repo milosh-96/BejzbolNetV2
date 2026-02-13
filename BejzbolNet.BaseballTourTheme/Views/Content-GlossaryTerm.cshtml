@@ -1,0 +1,63 @@
+@using System.Text.Json.Dynamic
+@{
+    ContentItem contentItem = Model.ContentItem;
+    var containedPart = contentItem.Content.ContainedPart;
+    string containedPartId = (string)containedPart.ListContentItemId;
+    var parent = await Orchard.GetContentItemByIdAsync(containedPartId);
+}
+<main class="flex-grow">
+    <div class="bg-accent min-h-screen py-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <a display-for="parent" class="flex items-center gap-2 text-primary hover:text-primary/80 mb-8 font-medium">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>@T["Back to Glossary"]
+            </a>
+            <div class="bg-white rounded-lg shadow-lg p-8 md:p-12">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="bg-primary/10 p-3 rounded-lg">
+                        <i data-lucide="book-open" class="w-6 h-6 text-primary"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h1 class="text-3xl md:text-4xl font-bold text-text mb-2">@contentItem.DisplayText</h1>
+                        <p class="text-lg text-text/80">
+                            @await Orchard.MarkdownToHtmlAsync((string)contentItem.Content.MarkdownBodyPart.Markdown)
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold text-text mb-4">
+                        @T["Examples"]
+                    </h2>
+                    <ul class="space-y-3">
+                        <li class="bg-accent p-4 rounded-lg border border-primary/10">
+                            <p class="text-text/80">
+                                @await Orchard.MarkdownToHtmlAsync((string)contentItem.Content.GlossaryTerm.Examples.Markdown)
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-text mb-4">@T["Related Terms"]</h2>
+                    <div class="flex flex-wrap gap-3">
+                        @{
+                            var relatedTermsIds = contentItem.Content.GlossaryTerm.RelatedTerms.ContentItemIds;
+                            List<ContentItem> relatedTerms = new List<ContentItem>(relatedTermsIds.Count);
+
+                            foreach (JsonDynamicValue id in relatedTermsIds)
+                            {
+                                relatedTerms.Add(await Orchard.GetContentItemByIdAsync(id.ToString()));
+                            }
+                        }
+                        @foreach(var relatedTerm in relatedTerms)
+                        {
+                            <a display-for="relatedTerm"
+                               class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-lg font-medium transition-colors"
+                            >
+                                @relatedTerm.DisplayText
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

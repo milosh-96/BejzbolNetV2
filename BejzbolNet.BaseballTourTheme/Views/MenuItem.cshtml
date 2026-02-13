@@ -1,0 +1,20 @@
+@using Microsoft.AspNetCore.Html
+@using System.Text
+@{
+    TagBuilder tag = Tag(Model, "span");
+
+    // Morphing the shape to keep Model untouched
+    Model.Metadata.Alternates.Clear();
+    Model.Classes.Clear();
+    Model.Metadata.Type = "MenuItemLink";
+
+    tag.InnerHtml.AppendHtml(await DisplayAsync(Model));
+    if ((bool)Model.HasItems)
+    {
+        foreach (var item in Model.Items)
+        {
+            tag.InnerHtml.AppendHtml(await DisplayAsync(item));
+        }
+    }
+}
+@tag

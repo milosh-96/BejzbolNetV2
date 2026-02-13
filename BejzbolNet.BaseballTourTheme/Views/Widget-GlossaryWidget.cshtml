@@ -1,0 +1,30 @@
+﻿@{
+    string glossaryId = Model.ContentItem.Content.GlossaryWidget.Glossary.ContentItemIds[0];
+    var items = await Orchard.QueryListItemsAsync(glossaryId);
+}
+
+<div class="bg-white py-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.02]">
+        <svg class="w-full h-full"
+             xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="field-lines" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="2">
+                    </line>
+                    <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" stroke-width="2">
+                    </line>
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#field-lines)"></rect>
+        </svg>
+    </div>
+    <div class="relative z-10">
+        <h2 class="text-4xl font-bold text-text mb-4 text-center px-6">@Model.ContentItem.DisplayText</h2>
+        <p class="text-xl text-text/70 max-w-2xl mx-auto mb-8 px-6">
+            @await DisplayAsync(Model.Content.HtmlBodyPart)
+        </p>
+        <shape Type="GlossaryShape" prop-GlossaryItems="items"></shape>
+    </div>
+
+</div>

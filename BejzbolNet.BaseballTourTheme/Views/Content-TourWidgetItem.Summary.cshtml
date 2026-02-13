@@ -1,0 +1,14 @@
+@{
+    var contentItem = Model.ContentItem;
+    var selectedItem = await Orchard.GetContentItemByIdAsync((string)contentItem.Content.TourWidgetItem.Item.ContentItemIds[0]);
+    bool displayCustomTitle = (bool)contentItem.Content.TourWidgetItem.DisplayCustomTitle.Value;
+}
+<a display-for="@selectedItem">
+    <div class="bg-white p-6 rounded-lg border-2 border-primary/10 hover:border-highlight transition-colors">
+        <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <i data-lucide="@contentItem.Content.TourWidgetItem.LucideIcon.Text"></i>
+        </div>
+        <h3 class="text-xl font-bold text-text mb-2">@(displayCustomTitle? contentItem.DisplayText: selectedItem.DisplayText)</h3>
+        <p class="text-text/70">@await DisplayAsync(Model.Content.HtmlBodyPart)</p>
+    </div>
+</a>

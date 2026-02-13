@@ -1,0 +1,349 @@
+﻿@using Microsoft.AspNetCore.Html
+
+<!DOCTYPE html>
+<html lang="@Orchard.CultureName()" dir="@Orchard.CultureDir()">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@RenderTitleSegments(Site.SiteName, "after", new HtmlString(" | "))</title>
+    <style asp-name="@ResourceNames.TailwindCss"></style>
+    <resources type="Meta" />
+    <resources type="HeadLink" />
+    <resources type="HeadScript" />
+    <resources type="Stylesheet" />
+</head>
+<body>
+    <div class="w-full min-h-screen bg-white">
+        <div class="bg-white">
+            @await RenderSectionAsync("TopBar", false)
+        </div>
+        <nav class="bg-primary text-accent border-b border-accent/10">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between md:items-center py-4 md:py-0">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="/" class="text-2xl font-bold hover:text-highlight transition-colors">
+                            @Site.SiteName
+                        </a>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <div id="mobileMenu" class="hidden md:flex mt-4 md:mt-0 py-4 md:py-3 border-t border-accent/10">
+                        <menu alias="alias:main-menu-@Orchard.CultureName()" cache-id="main-menu-@Orchard.CultureName()" cache-fixed-duration="00:05:00" cache-tag="alias:main-menu-@Orchard.CultureName()" />
+                    </div>
+                    <!-- Mobile menu button -->
+                    <button id="menuToggle"
+                            class="md:hidden p-2 rounded-lg hover:bg-accent/10 transition-colors absolute right-5"
+                            aria-label="Toggle Menu">
+                        <!-- Menu Icon -->
+                        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="6" x2="20" y2="6"></line>
+                            <line x1="4" y1="12" x2="20" y2="12"></line>
+                            <line x1="4" y1="18" x2="20" y2="18"></line>
+                        </svg>
+
+                        <!-- X Icon -->
+                        <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Navigation -->
+               
+            </div>
+        </nav>
+        @await RenderBodyAsync()
+        <!--hero-->
+@* 
+        <div class="bg-primary text-accent min-h-[600px] flex items-center">
+            <div class="max-w-6xl mx-auto px-6 py-20">
+                <div class="max-w-3xl">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        Learn Baseball,<br />
+                        Enjoy the Game
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-accent/90">
+                        From first pitch to final out, understand everything happening on
+                        the field. Our guided tour makes baseball simple and exciting.
+                    </p>
+                    <button class="bg-secondary hover:bg-secondary/90 text-accent px-8 py-4 rounded-lg text-lg font-semibold flex items-center gap-2 transition-colors">
+                        Start Your Baseball Tour
+                        <!-- ChevronRightIcon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!--end hero-->
+        <!-- tour preview-->
+        <div class="bg-accent py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <!-- Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-text mb-4">Your Baseball Journey</h2>
+                    <p class="text-xl text-text/70 max-w-2xl mx-auto">
+                        Take our guided tour through baseball fundamentals. Each stop builds
+                        your knowledge step by step.
+                    </p>
+                </div>
+
+                <!-- Tour Stops -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Stop 1 -->
+                    <div class="bg-white p-6 rounded-lg border-2 border-primary/10 hover:border-highlight transition-colors">
+                        <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                            <!-- BookOpenIcon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a4 4 0 0 0-4-4H2z" />
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a4 4 0 0 1 4-4h6z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">The Basics</h3>
+                        <p class="text-text/70">Learn the field, positions, and how the game flows</p>
+                    </div>
+
+                    <!-- Stop 2 -->
+                    <div class="bg-white p-6 rounded-lg border-2 border-primary/10 hover:border-highlight transition-colors">
+                        <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                            <!-- UsersIcon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M7 21v-2a4 4 0 0 1 3-3.87" />
+                                <path d="M12 7a4 4 0 1 0 0 8a4 4 0 0 0 0-8z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Players & Positions</h3>
+                        <p class="text-text/70">Understand each position and what they do</p>
+                    </div>
+
+                    <!-- Stop 3 -->
+                    <div class="bg-white p-6 rounded-lg border-2 border-primary/10 hover:border-highlight transition-colors">
+                        <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                            <!-- TargetIcon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Rules & Scoring</h3>
+                        <p class="text-text/70">Master strikes, balls, outs, and runs</p>
+                    </div>
+
+                    <!-- Stop 4 -->
+                    <div class="bg-white p-6 rounded-lg border-2 border-primary/10 hover:border-highlight transition-colors">
+                        <div class="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                            <!-- TrophyIcon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 21h8M12 17v4M12 3v2M7 5h10a5 5 0 0 0 5-5H2a5 5 0 0 0 5 5z" />
+                                <path d="M18 8a6 6 0 1 1-12 0" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-text mb-2">Strategy & Plays</h3>
+                        <p class="text-text/70">Discover the tactics that win games</p>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="mt-12 text-center">
+                    <button class="bg-highlight hover:bg-highlight/90 text-text px-8 py-3 rounded-lg font-semibold transition-colors">
+                        Begin the Tour
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- end tour preview-->
+        <!-- glossary preview-->
+        <div class="bg-white py-20">
+            <div class="max-w-6xl mx-auto px-6">
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-text mb-4">Baseball Glossary</h2>
+                    <p class="text-xl text-text/70 max-w-2xl mx-auto mb-8">
+                        Quick reference for baseball terms and phrases. Look up anything you
+                        hear during the game.
+                    </p>
+
+                    <!-- Search Input -->
+                    <div class="max-w-2xl mx-auto relative">
+                        <!-- SearchIcon -->
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="absolute left-4 top-1/2 transform -translate-y-1/2 text-text/40 w-5 h-5"
+                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text"
+                               placeholder="Search for a term..."
+                               class="w-full pl-12 pr-4 py-3 border-2 border-primary/20 rounded-lg focus:outline-none focus:border-highlight" />
+                    </div>
+                </div>
+
+                <!-- Glossary Terms -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-accent p-4 rounded-lg border border-primary/10">
+                        <h3 class="font-bold text-secondary mb-2">Strike Zone</h3>
+                        <p class="text-sm text-text/70">
+                            The area over home plate where a pitch must pass to be called a strike
+                        </p>
+                    </div>
+
+                    <div class="bg-accent p-4 rounded-lg border border-primary/10">
+                        <h3 class="font-bold text-secondary mb-2">Double Play</h3>
+                        <p class="text-sm text-text/70">
+                            When the defense gets two outs on a single play
+                        </p>
+                    </div>
+
+                    <div class="bg-accent p-4 rounded-lg border border-primary/10">
+                        <h3 class="font-bold text-secondary mb-2">ERA</h3>
+                        <p class="text-sm text-text/70">
+                            Earned Run Average - measures a pitcher's effectiveness
+                        </p>
+                    </div>
+
+                    <div class="bg-accent p-4 rounded-lg border border-primary/10">
+                        <h3 class="font-bold text-secondary mb-2">RBI</h3>
+                        <p class="text-sm text-text/70">
+                            Run Batted In - credit given when a batter's action causes a run to score
+                        </p>
+                    </div>
+
+                    <div class="bg-accent p-4 rounded-lg border border-primary/10">
+                        <h3 class="font-bold text-secondary mb-2">Stolen Base</h3>
+                        <p class="text-sm text-text/70">
+                            When a runner advances to the next base while the pitcher is throwing
+                        </p>
+                    </div>
+
+                    <div class="bg-accent p-4 rounded-lg border border-primary/10">
+                        <h3 class="font-bold text-secondary mb-2">Balk</h3>
+                        <p class="text-sm text-text/70">
+                            An illegal motion by the pitcher that allows runners to advance
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer Button -->
+                <div class="text-center">
+                    <button class="text-primary hover:text-primary/80 font-semibold underline">
+                        View Full Glossary →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- end glossary preview-->
+ *@
+
+
+        <footer class="bg-primary text-accent py-12">
+            <div class="max-w-6xl mx-auto px-6">
+                <!-- Top section -->
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <!-- About section -->
+                    <div class="footerLogo">
+                        <h3>Learn Baseball</h3>
+                        <p class="text-accent/80">
+                            Making America's pastime accessible to everyone, one pitch at a
+                            time.
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <nav aria-label="Quick Links">
+                        <h4 class="font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2 text-accent/80">
+                            <li>
+                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                                    Start Tour
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                                    Glossary
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                                    About
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <!-- Resources -->
+                    <nav aria-label="Resources">
+                        <h4 class="font-semibold mb-4">Resources</h4>
+                        <ul class="space-y-2 text-accent/80">
+                            <li>
+                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                                    FAQ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                                    Contact
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                                    Privacy
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Divider + Bottom text -->
+                <div class="border-t border-accent/20 pt-8 text-center text-accent/70">
+                    <p>© 2025 Learn Baseball. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script asp-name="@ResourceNames.LucideIcons"></script>
+    <resources Type="Footer"></resources>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        menuToggle.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden');
+          menuIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+        });
+
+        // Optional: close menu when link clicked (like in React)
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          });
+        });
+    </script>
+
+</body>
+</html>
