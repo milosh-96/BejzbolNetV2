@@ -1,0 +1,52 @@
+<shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem" prop-Subtitle="Model.ContentItem.Content.BlogPost.Subtitle.Text"></shape>
+
+<main class="flex-grow py-12">
+    <div class="max-w-6xl mx-auto px-6">
+
+<div class="flex flex-col lg:flex-row gap-8">
+    <aside class="lg:w-64 flex-shrink-0">
+        <div class="space-y-4">
+            <div class="bg-white p-4 rounded-lg border border-primary/10">
+                <h3 class="font-bold text-text mb-2">Quick Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>
+                        <a href="#" class="text-primary hover:text-highlight">Section 1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-primary hover:text-highlight">Section 2</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-primary hover:text-highlight">Section 3</a>
+                    </li>
+                </ul>
+            </div>
+                    <div class="rounded-lg overflow-hidden border border-primary/10" data-id="element-200">
+                        <img src="https://www.gourmetads.com/wp-content/uploads/2022/01/buy-now-kraft-mac-and-cheese-300x250-call-to-action.jpg" alt="A worn baseball glove resting on the field" class="w-full h-40 object-cover" data-id="element-201"><div class="bg-white p-3" data-id="element-202"><p class="text-xs text-text/60 font-medium" data-id="element-203">Did you know?</p><p class="text-sm text-text/80" data-id="element-204">A baseball glove takes about 100 hours to properly break in.</p></div></div>
+        </div>
+    </aside>
+    <div class="flex-grow">
+        <section class="bg-white py-20 rounded-lg">
+            @await DisplayAsync(Model.Content)
+
+        </section>
+        <section class=" py-12 mt-8">
+            <div class="mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-text mb-2">
+                    Another Section
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg border border-primary/10">
+                    <h3 class="font-bold text-text mb-2">Feature 1</h3>
+                    <p class="text-text/70">Description of feature or content</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-primary/10">
+                    <h3 class="font-bold text-text mb-2">Feature 2</h3>
+                    <p class="text-text/70">Description of feature or content</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</div>
+</main>

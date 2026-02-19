@@ -19,6 +19,7 @@
     h3 {
         font-size: var(--text-xl);
     }
+
 }
 
 html {
@@ -32,4 +33,24 @@ html {
 
 .footerLogo h3 {
     @apply font-bold mb-4 text-accent/80;
+}
+
+.footer-navigation {
+    @apply space-y-2 text-accent/80;
+}
+    .footer-navigation span {
+        @apply block;
+    }
+.footer-navigation a {
+    @apply hover:text-highlight transition-colors hover:underline;
+}
+
+.footer .widget-container-title h2 {
+    @apply font-semibold mb-4;
+}
+
+main {
+    img {
+        @apply w-full rounded-lg object-cover;
+    }
 }

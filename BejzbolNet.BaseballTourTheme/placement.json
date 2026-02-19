@@ -2,8 +2,15 @@
   "TitlePart": [
     {
       "contentType": [ "Page" ],
-      "path": [ "/","/naslovna" ],
+      "path": [ "/", "/naslovna" ],
       "place": "-" // - is to hide
+    }
+  ],
+  "TextField": [
+    {
+      "contentType": [ "BlogPost" ],
+      "differentiator": "BlogPost-Subtitle",
+      "place": "-"
     }
   ]
 }

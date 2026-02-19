@@ -1,10 +1,18 @@
-﻿@using Microsoft.AspNetCore.Html
-
+﻿@using BejzbolNet.BaseballTourTheme.Settings
+@using Microsoft.AspNetCore.Html
+@using OrchardCore.Media.Fields
+@using OrchardCore.Settings
+@inject ISiteService siteService
+@{
+    var settingsItem = await siteService.GetCustomSettingsAsync(nameof(BaseballTourThemeSettings));
+    BaseballTourThemeSettings settings = settingsItem.As<BaseballTourThemeSettings>();
+}
 <!DOCTYPE html>
 <html lang="@Orchard.CultureName()" dir="@Orchard.CultureDir()">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="~/BejzbolNet.BaseballTourTheme/favicon.ico">
     <title>@RenderTitleSegments(Site.SiteName, "after", new HtmlString(" | "))</title>
     <style asp-name="@ResourceNames.TailwindCss"></style>
     <resources type="Meta" />
@@ -22,14 +30,16 @@
                 <div class="flex flex-col md:flex-row justify-between md:items-center py-4 md:py-0">
                     <!-- Logo -->
                     <div class="flex-shrink-0">
-                        <a href="/" class="text-2xl font-bold hover:text-highlight transition-colors">
-                            @Site.SiteName
+                        <a href="/" class="block">
+                            <img src="@Orchard.AssetUrl(settings.SiteLogo.Paths.First())" alt="@Site.SiteName" class="h-10 w-auto">
                         </a>
                     </div>
 
                     <!-- Desktop Navigation -->
                     <div id="mobileMenu" class="hidden md:flex mt-4 md:mt-0 py-4 md:py-3 border-t border-accent/10">
-                        <menu alias="alias:main-menu-@Orchard.CultureName()" cache-id="main-menu-@Orchard.CultureName()" cache-fixed-duration="00:05:00" cache-tag="alias:main-menu-@Orchard.CultureName()" />
+                        <div class="flex flex-col md:flex-row space-y-3 md:space-x-8 md:space-y-0">
+                            <menu alias="alias:main-menu-@Orchard.CultureName()" cache-id="main-menu-@Orchard.CultureName()" cache-fixed-duration="00:05:00" cache-tag="alias:main-menu-@Orchard.CultureName()" />
+                        </div>
                     </div>
                     <!-- Mobile menu button -->
                     <button id="menuToggle"
@@ -53,12 +63,12 @@
                 </div>
 
                 <!-- Mobile Navigation -->
-               
+
             </div>
         </nav>
         @await RenderBodyAsync()
         <!--hero-->
-@* 
+        @* 
         <div class="bg-primary text-accent min-h-[600px] flex items-center">
             <div class="max-w-6xl mx-auto px-6 py-20">
                 <div class="max-w-3xl">
@@ -251,67 +261,34 @@
  *@
 
 
-        <footer class="bg-primary text-accent py-12">
-            <div class="max-w-6xl mx-auto px-6">
+        <footer class="footer bg-primary text-accent py-12 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5">
+                <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="baseball-diamonds-footer" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                            <rect x="25" y="25" width="50" height="50" fill="none" stroke="currentColor" stroke-width="2" transform="rotate(45 50 50)"></rect>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#baseball-diamonds-footer)"></rect>
+                </svg>
+            </div>
+            <div class="max-w-6xl mx-auto px-6 relative">
                 <!-- Top section -->
                 <div class="grid md:grid-cols-3 gap-8 mb-8">
                     <!-- About section -->
                     <div class="footerLogo">
-                        <h3>Learn Baseball</h3>
-                        <p class="text-accent/80">
-                            Making America's pastime accessible to everyone, one pitch at a
-                            time.
+                        <img src="@Orchard.AssetUrl(settings.SiteLogo.Paths.First())" alt="@Site.SiteName" class="h-10 w-auto mb-4">
+                        <p class="text-accent/80 text-sm">
+                            Making America's pastime accessible to everyone, one pitch at a time.
                         </p>
                     </div>
+                    @await RenderSectionAsync(Zones.FooterSections, false)
 
-                    <!-- Quick Links -->
-                    <nav aria-label="Quick Links">
-                        <h4 class="font-semibold mb-4">Quick Links</h4>
-                        <ul class="space-y-2 text-accent/80">
-                            <li>
-                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
-                                    Start Tour
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
-                                    Glossary
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
-                                    About
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <!-- Resources -->
-                    <nav aria-label="Resources">
-                        <h4 class="font-semibold mb-4">Resources</h4>
-                        <ul class="space-y-2 text-accent/80">
-                            <li>
-                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
-                                    FAQ
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
-                                    Contact
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:text-highlight transition-colors hover:underline">
-                                    Privacy
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
 
                 <!-- Divider + Bottom text -->
                 <div class="border-t border-accent/20 pt-8 text-center text-accent/70">
-                    <p>© 2025 Learn Baseball. All rights reserved.</p>
+                    <p>© @DateTime.Now.Year @Site.SiteName. @T["All rights reserved."]</p>
                 </div>
             </div>
         </footer>
@@ -347,3 +324,5 @@
 
 </body>
 </html>
+
+

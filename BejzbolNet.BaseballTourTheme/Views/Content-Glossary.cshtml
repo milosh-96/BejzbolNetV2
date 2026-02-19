@@ -12,14 +12,8 @@
     }
 }
 
-<div class="bg-primary text-accent py-16">
-    <div class="max-w-6xl mx-auto px-6">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">@contentItem.DisplayText</h1>
-        <p class="text-xl text-accent/90">
-            @await Orchard.MarkdownToHtmlAsync((string)contentItem.Content.MarkdownBodyPart.Markdown)
-        </p>
-    </div>
-</div>
+<shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem"></shape>
+
 <main class="flex-grow">
     <div class="bg-white py-12">
         <shape Type="GlossaryShape" prop-GlossaryItems="featuredItems"></shape>

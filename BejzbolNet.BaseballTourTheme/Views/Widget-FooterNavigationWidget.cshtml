@@ -1,0 +1,31 @@
+@inject OrchardCore.ContentManagement.Display.IContentItemDisplayManager ContentItemDisplayManager
+
+@* <nav aria-label="Resources">
+    <h4 class="font-semibold mb-4">Resources</h4>
+    <ul class="space-y-2 text-accent/80">
+        <li>
+            <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                FAQ
+            </a>
+        </li>
+        <li>
+            <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                Contact
+            </a>
+        </li>
+        <li>
+            <a href="#" class="hover:text-highlight transition-colors hover:underline">
+                Privacy
+            </a>
+        </li>
+    </ul>
+</nav> *@
+
+
+@{
+    var menu = await Orchard.GetContentItemByIdAsync((string)Model.ContentItem.Content.FooterNavigationWidget.Menu.ContentItemIds[0]);
+} 
+@Orchard.ConsoleLog(Model as object)
+    <div class="footer-navigation">
+        <menu alias="alias:@menu.Content.AliasPart.Alias" cache-id="@menu.Content.AliasPart.Alias" cache-fixed-duration="00:05:00" cache-tag="alias:@menu.Content.AliasPart.Alias" />
+    </div>
