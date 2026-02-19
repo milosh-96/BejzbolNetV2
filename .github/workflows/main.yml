@@ -1,0 +1,51 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build and Publish
+        run: dotnet publish -c Release -p:PublishDir=../publish
+
+      - name: Deploy to VPS (rsync over SSH)
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          source: "publish/*"
+          target: "/var/www/aspnet/bejzbol.net/v2/temp"
+          rm: false
+          strip_components: 1
+
+      - name: Restart App on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            cp -a /var/www/aspnet/bejzbol.net/v2/temp/. /var/www/aspnet/bejzbol.net/v2/publish/
+            rm -r /var/www/aspnet/bejzbol.net/v2/temp/*
+            # Example: restart systemd service
+            sudo systemctl stop kestrel-bejzbol-net-v2
+            sudo chmod 770 /var/www/aspnet/bejzbol.net/v2/publish
+            sudo chmod -R 770 /var/www/aspnet/bejzbol.net/v2/publish/App_Data
+            sudo chmod -R 770 /var/www/aspnet/bejzbol.net/v2/publish/wwwroot
+            sudo systemctl start kestrel-bejzbol-net-v2
