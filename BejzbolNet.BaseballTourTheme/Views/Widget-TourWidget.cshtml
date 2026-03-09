@@ -32,10 +32,12 @@
             }
         </div>
         <div class="mt-12 text-center">
-            <button class="bg-highlight hover:bg-highlight/90 text-text px-8 py-3 rounded-lg font-semibold transition-colors"
-                    >
-                Begin the Tour
-            </button>
+            @{
+                var cta = Model.ContentItem.Content.TourWidget.CallToAction;
+            }
+            <a href="@(cta.Url ?? "#")" target="@(cta.Target ?? "_blank")" class="bg-highlight hover:bg-highlight/90 text-text px-8 py-3 rounded-lg font-semibold transition-colors">
+                @(cta.Text ?? T["Begin the Tour!"])
+            </a>
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@
     var paths = Model.Paths ?? Array.Empty<string>();
     var mediaTexts = Model.Field?.MediaTexts ?? Array.Empty<string>();
     var name = (Model.PartFieldDefinition.PartDefinition.Name + "-" + Model.PartFieldDefinition.Name).HtmlClassify();
-    var imgClasses = "w-full h-64 md:h-72 object-cover";
+    var imgClasses = "w-full";
 }
 @if (paths.Length > 0)
 {

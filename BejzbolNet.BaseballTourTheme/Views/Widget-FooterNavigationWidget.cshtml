@@ -24,8 +24,7 @@
 
 @{
     var menu = await Orchard.GetContentItemByIdAsync((string)Model.ContentItem.Content.FooterNavigationWidget.Menu.ContentItemIds[0]);
-} 
-@Orchard.ConsoleLog(Model as object)
-    <div class="footer-navigation">
-        <menu alias="alias:@menu.Content.AliasPart.Alias" cache-id="@menu.Content.AliasPart.Alias" cache-fixed-duration="00:05:00" cache-tag="alias:@menu.Content.AliasPart.Alias" />
-    </div>
+}
+<div class="footer-navigation">
+    <menu alias="alias:@menu.Content.AliasPart.Alias" cache-id="@menu.Content.AliasPart.Alias" cache-fixed-duration="00:05:00" cache-tag="alias:@menu.Content.AliasPart.Alias" />
+</div>

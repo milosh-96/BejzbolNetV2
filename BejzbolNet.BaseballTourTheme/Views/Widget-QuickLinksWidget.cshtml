@@ -1,0 +1,30 @@
+
+<div>
+    <h3>@T["Links"]</h3>
+    @foreach(var link in Model.ContentItem.Content.BagPart.ContentItems)
+    {
+        string linkText = link.DisplayText;
+        string target = "_blank";
+        string url = "#";
+
+        if(link.Link.Link is not null && !string.IsNullOrEmpty((string)link.Link.Link.Text))
+        {
+            linkText = link.Link.Link.Text;
+        }
+
+        if(link.Link.Link is not null && !string.IsNullOrEmpty((string)link.Link.Link.Target))
+        {
+            target = link.Link.Link.Target;
+        }
+       
+        if(link.Link.Link is not null && !string.IsNullOrEmpty((string)link.Link.Link.Url))
+        {
+            url = link.Link.Link.Url;
+        }
+
+        <div>
+            <a href="@url" target="@target">@linkText </a>
+        </div>
+        @Orchard.ConsoleLog(link as object);
+    }
+</div>

@@ -1,0 +1,31 @@
+﻿msgctxt "BejzbolNet.BaseballTourTheme.Views.Layout"
+msgid "All rights reserved."
+msgstr "Sva prava zadržana."
+
+msgctxt "BejzbolNet.BaseballTourTheme.Views.Content-GlossaryTerm"
+msgid "Examples"
+msgstr "Primeri"
+
+msgctxt "BejzbolNet.BaseballTourTheme.Views.Content-GlossaryTerm"
+msgid "Back to {0}"
+msgstr "Povratak na {0}"
+
+
+msgctxt "BejzbolNet.BaseballTourTheme.Views.Content-GlossaryTerm"
+msgid "Related Terms"
+msgstr "Slično"
+
+
+msgctxt "BejzbolNet.BaseballTourTheme.Views.GlossaryShape"
+msgid "Search for a term..."
+msgstr "Unesite pojam za pretragu..."
+
+msgctxt "BejzbolNet.BaseballTourTheme.Views.ContentHeader"
+msgid "Home"
+msgstr "Naslovna"
+
+
+msgctxt "BejzbolNet.BaseballTourTheme.Views.Widget-QuickLinksWidget"
+msgid "Links"
+msgstr "Veze"
+

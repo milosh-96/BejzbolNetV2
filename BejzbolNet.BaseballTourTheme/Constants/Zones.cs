@@ -9,4 +9,8 @@ public static class Zones
 {
     public const string TopBar = nameof(TopBar);
     public const string FooterSections = nameof(FooterSections);
+
+    // widgets list
+
+    public const string ContentSidebar = nameof(ContentSidebar);
 }
