@@ -18,8 +18,10 @@
             if (Orchard.IsImageFile(path))
             {
                 var alt = !string.IsNullOrEmpty(mediaTexts.ElementAtOrDefault(i)) ? mediaTexts[i] : string.Empty;
-                <div class="overflow-hidden shadow-lg">
-                    <img src="@url" alt="@alt" class="@imgClasses" />
+                <div class="overflow-hidden shadow-lg w-full my-6">
+                    <div class="md:w-2/3 p-5 mx-auto">
+                        <img src="@url" alt="@alt" class="@imgClasses" />
+                    </div>
                 </div>
             }
             else

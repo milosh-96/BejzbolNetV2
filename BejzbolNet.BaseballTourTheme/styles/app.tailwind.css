@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary:#1B4332;
+    --color-primary: #1B4332;
     --color-accent: #F5F3E7;
     --color-secondary: #B33F2A;
     --color-highlight: #D9A441;
@@ -10,17 +10,29 @@
 
 @layer base {
     h1 {
-        font-size: var(--text-2xl);
+        font-size: var(--text-5xl);
     }
 
     h2 {
-        font-size: var(--text-1xl);
-    }
-    h3 {
-        font-size: var(--text-xl);
+        font-size: var(--text-4xl);
     }
 
+    h3 {
+        font-size: var(--text-3xl);
+    }
+
+    h4 {
+        font-size: var(--text-2xl);
+        
+    }
 }
+
+h1, h2, h3, h4 {
+    .field-type-htmlfield & {
+        @apply my-3;
+    }
+}
+
 
 html {
     scroll-behavior: smooth;
@@ -38,19 +50,45 @@ html {
 .footer-navigation {
     @apply space-y-2 text-accent/80;
 }
+
     .footer-navigation span {
         @apply block;
     }
-.footer-navigation a {
-    @apply hover:text-highlight transition-colors hover:underline;
-}
+
+    .footer-navigation a {
+        @apply hover:text-highlight transition-colors hover:underline;
+    }
 
 .footer .widget-container-title h2 {
-    @apply font-semibold mb-4;
+    @apply font-semibold mb-4 text-base;
 }
 
 main {
-    img {
-        @apply w-full rounded-lg object-cover;
+    img
+
+{
+    @apply w-full rounded-lg object-cover;
+}
+
+}
+
+ul {
+    .field-type-htmlfield & {
+        list-style-type: circle;
+        list-style-image: url("/BejzbolNet.BaseballTourTheme/images/baseball.svg");
+        list-style-position: inside;
+        li::marker {
+            font-size: 1.1em;
+        }
     }
+}
+
+table {
+    @apply w-full bg-white shadow-lg rounded-lg border-1 border-gray-100 my-8;
+    td, th {
+               @apply py-2 text-left;
+           }
+    tr:has(td) {
+           @apply border-t border-b border-gray-100 hover:bg-gray-100;
+       }
 }
