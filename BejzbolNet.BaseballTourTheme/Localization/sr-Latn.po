@@ -2,6 +2,10 @@
 msgid "All rights reserved."
 msgstr "Sva prava zadržana."
 
+msgctxt "BejzbolNet.BaseballTourTheme.Views.Layout"
+msgid "Making America's pastime accessible to everyone, one pitch at a time."
+msgstr "Bejzbol dostupan svima, korak po korak."
+
 msgctxt "BejzbolNet.BaseballTourTheme.Views.Content-GlossaryTerm"
 msgid "Examples"
 msgstr "Primeri"
