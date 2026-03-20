@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BejzbolNet.BaseballTourTheme\BejzbolNet.BaseballTourTheme.csproj" />
+    <ProjectReference Include="..\BejzbolNetV2.Common\BejzbolNetV2.Common.csproj" />
   </ItemGroup>
 	<ItemGroup>
 		<Content Include="Localization\**">

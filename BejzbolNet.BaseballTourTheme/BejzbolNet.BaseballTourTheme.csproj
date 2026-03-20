@@ -27,6 +27,6 @@
 
   <ItemGroup>
     <Folder Include="styles\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
 </Project>

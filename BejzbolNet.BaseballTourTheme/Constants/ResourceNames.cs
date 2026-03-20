@@ -4,4 +4,7 @@ public static class ResourceNames
 {
     public const string TailwindCss = nameof(TailwindCss);
     public const string LucideIcons = nameof(LucideIcons);
+
+    // Web Components
+    public const string GlossaryView = nameof(GlossaryView);
 }
