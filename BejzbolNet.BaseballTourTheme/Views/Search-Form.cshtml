@@ -1,0 +1,21 @@
+@using OrchardCore.Search.ViewModels
+@model SearchFormViewModel
+@{
+    var placeholder = Model.Placeholder;
+
+    if (string.IsNullOrWhiteSpace(placeholder))
+    {
+        placeholder = T["Enter your search term(s)"].Value;
+    }
+}
+
+<div class="max-w-6xl mx-auto px-6">
+    <div class="flex w-full items-start justify-center gap-4">
+        <form asp-action="Search" asp-controller="Search" asp-area="OrchardCore.Search" asp-route-index="@Model.Index" method="get">
+            <div class="flex flex-grow">
+                <input name="Terms" type="text" value="@Model.Terms" class="border-gray-1 rounded-lg  w-full" placeholder="@placeholder" autofocus />
+                <button type="submit" class="bg-secondary justify-center hover:bg-secondary/90 text-accent px-8 py-4 rounded-lg font-semibold flex items-center transition-colors">@T["Search"]</button>
+            </div>
+        </form>
+    </div>
+</div>

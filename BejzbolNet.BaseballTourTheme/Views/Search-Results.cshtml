@@ -1,0 +1,22 @@
+@using OrchardCore.ContentManagement.Display
+@using OrchardCore.Search.ViewModels
+@model SearchResultsViewModel
+@inject IContentItemDisplayManager DisplayManager
+
+<div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-start justify-center gap-4">
+            @if (Model.ContentItems != null && Model.ContentItems.Any())
+            {
+                <div class="w-full">
+                    @foreach (var contentItem in Model.ContentItems)
+                    {
+                        @await DisplayAsync(await DisplayManager.BuildDisplayAsync(contentItem, null, "SearchResult"))
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="alert alert-warning">@T["There are no such results."]</p>
+            }
+        </div>
+    </div>
