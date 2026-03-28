@@ -1,0 +1,11 @@
+@using OrchardCore.DisplayManagement.Views
+@using OrchardCore.Forms.Models
+@model ShapeViewModel<ButtonPart>
+@{
+    var formElementPart = Model.Value.ContentItem.As<FormElementPart>();
+    var formInputElementPart = Model.Value.ContentItem.As<FormInputElementPart>();
+    var elementId = formElementPart.Id;
+    var elementName = formInputElementPart.Name;
+    var id = !string.IsNullOrEmpty(elementId) ? elementId : !string.IsNullOrEmpty(elementName) ? Html.GenerateIdFromName(elementName) : default(string);
+}
+<button id="@elementId" name="@elementName" type="@Model.Value.Type" class="w-full bg-secondary hover:bg-secondary/90 text-accent px-8 py-4 rounded-lg text-lg font-semibold transition-colors disabled:opacity-70 disabled:cursor-not-allowed">@Model.Value.Text</button>

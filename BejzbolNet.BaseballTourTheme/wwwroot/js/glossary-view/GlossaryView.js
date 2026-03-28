@@ -32,14 +32,14 @@ export class GlossaryView extends LitElement {
   createRenderRoot(){
     return this;
   }
-  test(value) {
+  filterItems(value) {
     this.searchQuery = value;
     this.filtered = this.items.filter(item => item.DisplayText.toLowerCase().startsWith(this.searchQuery.toLowerCase()));
   }
   // Render the UI as a function of component state
   render() {
       return html`
-      <search-bar  @searchQueryUpdated=${(e) => this.test(e.detail)} searchPlaceholder=${this.searchPlaceholder} searchQuery=${this.searchQuery}></search-bar>
+      <search-bar  @searchQueryUpdated=${(e) => this.filterItems(e.detail)} searchPlaceholder=${this.searchPlaceholder} searchQuery=${this.searchQuery}></search-bar>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       ${repeat(
         this.filtered,

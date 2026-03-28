@@ -1,0 +1,22 @@
+@using OrchardCore.DisplayManagement.Views
+@using OrchardCore.Forms.Models
+@model ShapeViewModel<TextAreaPart>
+@{
+    var formElementPart = Model.Value.ContentItem.As<FormElementPart>();
+    var formInputElementPart = Model.Value.ContentItem.As<FormInputElementPart>();
+    var elementId = formElementPart.Id;
+    var fieldName = formInputElementPart.Name;
+    var fieldId = !string.IsNullOrEmpty(elementId) ? elementId : !string.IsNullOrEmpty(fieldName) ? Html.GenerateIdFromName(fieldName) : default(string);
+    var fieldValue = Model.Value.DefaultValue?.Trim();
+    var fieldClass = "w-full px-4 py-3 border-2 border-primary/20 rounded-lg focus:outline-none focus:border-highlight bg-white text-text transition-colors resize-y";
+
+    if (ViewData.ModelState.TryGetValue(fieldName, out var fieldEntry))
+    {
+        fieldValue = fieldEntry.AttemptedValue;
+        if (fieldEntry.Errors.Count > 0)
+        {
+            fieldClass = "form-control input-validation-error is-invalid";
+        }
+    }
+}
+<textarea id="@fieldId" name="@fieldName" class="@fieldClass" placeholder="@Model.Value.Placeholder">@fieldValue</textarea>
