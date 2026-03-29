@@ -1,6 +1,6 @@
-@if (Context.Request.Path == "/" || Context.Request.Path.Value.StartsWith("/"+Orchard.CultureName()))
+@if (Context.Request.Path == "/" || Context.Request.Path.Value.EndsWith("/"+Orchard.CultureName()))
 {
-    @await DisplayAsync(Model.Content.FlowPart)
+    @await DisplayAsync(Model.Content)
 }
 else
 {
@@ -14,7 +14,7 @@ else
                 </aside>
             <div class="flex-grow">
                 <section class="bg-white rounded-lg">
-                    @await DisplayAsync(Model.Content.FlowPart)
+                    @await DisplayAsync(Model.Content)
                 </section>
                @*  <section class=" py-12 mt-8">
                     <div class="mb-8">
