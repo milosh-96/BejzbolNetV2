@@ -6,5 +6,7 @@ using OrchardCore.Modules.Manifest;
     Website = "https://orchardcore.net",
     Version = "0.0.1",
     Description = "BejzbolNetV2.Common",
-    Category = "Content Management"
+    Category = "Content Management",
+    Dependencies = ["OrchardCore.Admin"],
+    Tags = [ManifestConstants.AdminTag]
 )]

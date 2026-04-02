@@ -4,6 +4,7 @@
     var containedPart = contentItem.Content.ContainedPart;
     string containedPartId = (string)containedPart.ListContentItemId;
     var parent = await Orchard.GetContentItemByIdAsync(containedPartId);
+    RenderTitleSegments(contentItem.DisplayText);
 }
 <main class="flex-grow">
     <div class="bg-accent min-h-screen py-12">
@@ -35,6 +36,7 @@
                         </div>
                     </div>
                 </div>
+                @await RenderSectionAsync(Zones.PostSidebar, false)
                 <div>
                     <h2 class="text-xl font-bold text-text mb-4">@T["Related Terms"]</h2>
                     <div class="flex flex-wrap gap-3">

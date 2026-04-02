@@ -281,6 +281,9 @@
                         <p class="text-accent/80 text-sm">
                             @T["Making America's pastime accessible to everyone, one pitch at a time."]
                         </p>
+                        <div class="border-t border-accent/20 py-2 mt-4 text-accent/70">
+                            @await RenderSectionAsync(Zones.FooterCopyright, false)
+                        </div>
                     </div>
                     @await RenderSectionAsync(Zones.FooterSections, false)
 
