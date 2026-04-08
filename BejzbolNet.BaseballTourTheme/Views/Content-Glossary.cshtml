@@ -10,6 +10,7 @@
     {
         featuredItems.Add(await Orchard.GetContentItemByIdAsync(id.ToString()));
     }
+    RenderTitleSegments(contentItem.DisplayText);
 }
 
 <shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem"></shape>
