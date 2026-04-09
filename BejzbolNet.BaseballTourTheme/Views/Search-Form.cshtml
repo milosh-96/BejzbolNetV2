@@ -10,11 +10,11 @@
 }
 
 <div class="max-w-6xl mx-auto px-6">
-    <div class="flex w-full items-start justify-center gap-4">
+    <div class="flex w-full items-start justify-center gap-4 bg-white py-8 mb-16 rounded-b-lg border-2 border-t-0 border-secondary/20">
         <form asp-action="Search" asp-controller="Search" asp-area="OrchardCore.Search" asp-route-index="@Model.Index" method="get">
             <div class="flex flex-grow">
-                <input name="Terms" type="text" value="@Model.Terms" class="border-gray-1 rounded-lg  w-full" placeholder="@placeholder" autofocus />
-                <button type="submit" class="bg-secondary justify-center hover:bg-secondary/90 text-accent px-8 py-4 rounded-lg font-semibold flex items-center transition-colors">@T["Search"]</button>
+                <input name="Terms" type="text" value="@Model.Terms" class="w-full pl-12 pr-4 py-3 bg-white border-2 border-r-0 rounded-r-none border-primary/20 rounded-lg focus:outline-none focus:border-highlight" placeholder="@placeholder" autofocus />
+                <button type="submit" class="bg-secondary justify-center hover:bg-secondary/90 text-accent px-8 py-4 rounded-lg rounded-l-none font-semibold flex items-center transition-colors">@T["Search"]</button>
             </div>
         </form>
     </div>

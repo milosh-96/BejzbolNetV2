@@ -17,7 +17,11 @@ msgstr "Povratak na {0}"
 
 msgctxt "BejzbolNet.BaseballTourTheme.Views.Content-GlossaryTerm"
 msgid "Related Terms"
-msgstr "Slično"
+msgstr "Povezano"
+
+msgctxt "BejzbolNet.BaseballTourTheme.Views.Content-GlossaryTerm"
+msgid "Additional Content"
+msgstr "Dodatno"
 
 
 msgctxt "BejzbolNet.BaseballTourTheme.Views.GlossaryShape"

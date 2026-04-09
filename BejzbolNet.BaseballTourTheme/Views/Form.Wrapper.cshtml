@@ -12,7 +12,7 @@
     var elementId = ((ContentItem)Model.ContentItem).As<FormElementPart>()?.Id;
     string formId = string.IsNullOrWhiteSpace(elementId) ? $"form_{Model.ContentItem.ContentItemId}" : elementId;
 
-    string wrapperClasses = "bg-accent p-6 md:p-8 rounded-xl border border-primary/10";
+    string wrapperClasses = "p-6 md:p-8 rounded-xl";
 }
 <div class="@wrapperClasses">
     <form id="@formId" action="@formPart.Action" method="@formPart.Method" enctype="@encType" class="form-content @formContentTypeClassName">
