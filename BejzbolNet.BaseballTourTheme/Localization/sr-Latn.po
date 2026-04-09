@@ -19,8 +19,8 @@ msgctxt "BejzbolNet.BaseballTourTheme.Views.Content-GlossaryTerm"
 msgid "Related Terms"
 msgstr "Povezano"
 
-msgctxt "BejzbolNet.BaseballTourTheme.Views.Content-GlossaryTerm"
-msgid "Additional Content"
+msgctxt "BejzbolNet.BaseballTourTheme.Views.Zone-PostSidebar"
+msgid " Additional Content"
 msgstr "Dodatno"
 
 
