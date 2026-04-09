@@ -49,5 +49,14 @@ jobs:
             sudo chmod -R 770 /var/www/aspnet/bejzbol.net/v2/publish/App_Data
             sudo chmod -R 770 /var/www/aspnet/bejzbol.net/v2/publish/wwwroot
             sudo systemctl start kestrel-bejzbol-net-v2
+
+
       - name: Create ads.txt
-        run: echo "google.com, pub-3889894636465196, DIRECT, f08c47fec0942fa0" > /var/www/aspnet/bejzbol.net/v2/publish/wwwroot/ads.txt
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            echo "google.com, pub-3889894636465196, DIRECT, f08c47fec0942fa0" > /var/www/aspnet/bejzbol.net/v2/publish/wwwroot/ads.txt
