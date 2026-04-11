@@ -3,15 +3,14 @@
 @inject OrchardCore.ContentManagement.Display.IContentItemDisplayManager ContentItemDisplayManager
 @{
     ContentItem contentItem = Model.ContentItem;
-
+    var glossaryId = contentItem.Content.ContentMenuItemPart.SelectedContentItem.ContentItemIds[0];
     RenderTitleSegments(contentItem.DisplayText);
-}
 
+}
 <shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem"></shape>
 
 <main class="flex-grow">
     <div class="bg-white py-12">
-        <shape Type="GlossaryShape" prop-GlossaryId="@Model.ContentItem.ContentItemId"></shape>
+        <shape Type="GlossaryShape" prop-GlossaryId="@glossaryId"></shape>
     </div>
 </main>
-

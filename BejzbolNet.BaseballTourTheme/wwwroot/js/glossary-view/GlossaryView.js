@@ -7,16 +7,16 @@ export class GlossaryView extends LitElement {
     items: {},
     filtered: {},
     glossaryId: {},
-    searchPlaceholder: {}
+    searchPlaceholder: {},
+    culture: {}
   };
 
   getData() {
-    let items = [];
-    fetch('/api/queries/searchglossaryterm?parameters={"glossaryId":"'+this.glossaryId+'"}')
+        let items = [];
+        fetch('/api/queries/searchglossaryterm?parameters={"glossaryId":"' + this.glossaryId + '","culture": "'+this.culture+'"} ')
       .then((response) => response.json())
       .then((data) => { this.items = data.items; this.filtered = this.items; })
       .catch((e) => console.log(e));
-    console.log(items);
     return items;
   }
   constructor() {
@@ -25,7 +25,8 @@ export class GlossaryView extends LitElement {
     this.items = [];
     this.filtered = this.items;
     this.glossaryId = this.getAttribute("glossaryId");
-      this.searchPlaceholder = this.getAttribute("searchPlaceholder");
+    this.culture = this.getAttribute("culture");
+    this.searchPlaceholder = this.getAttribute("searchPlaceholder");
 
     this.items = this.getData();
   }

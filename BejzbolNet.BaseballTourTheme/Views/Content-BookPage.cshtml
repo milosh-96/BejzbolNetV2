@@ -1,5 +1,22 @@
-<shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem"></shape>
+@using OrchardCore.ContentFields.Indexing.SQL
+@using OrchardCore.ContentLocalization.Records
+@{
+    ContentItem contentItem = Model.ContentItem;
+    var containedPart = contentItem.Content.ContainedPart;
+    string containedPartId = (string)containedPart.ListContentItemId;
 
+    var parent = await Orchard.GetContentItemByIdAsync(containedPartId);
+    var displayPage = (await Orchard.QueryContentItemsAsync(query =>
+    query.With<ContentPickerFieldIndex>(index =>
+        index.ContentType == "BookDisplay" &&
+        index.ContentPart == "ContentMenuItemPart" &&
+        index.SelectedContentItemId == parent.ContentItemId)
+     .With<LocalizedContentItemIndex>(index =>
+        index.Culture == Orchard.CultureName())
+)).FirstOrDefault();
+}
+
+<shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem" prop-Parent="@displayPage"></shape>
 <main class="flex-grow py-12">
     <div class="max-w-6xl mx-auto px-6">
         <div class="flex flex-col lg:flex-row gap-8">

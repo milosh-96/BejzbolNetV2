@@ -1,0 +1,19 @@
+@using OrchardCore.ContentFields.Indexing.SQL
+@using OrchardCore.ContentLocalization.Records
+@using OrchardCore.ContentManagement.Display
+@inject IContentItemDisplayManager ContentItemDisplayManager 
+@{
+    string bookId = Model.ContentItem.Content.ContentMenuItemPart.SelectedContentItem.ContentItemIds[0];
+    var bookItems = (await Orchard.QueryListItemsAsync(bookId)).Where(x => x.Content.LocalizationPart.Culture == Orchard.CultureName());
+}
+
+<shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem"></shape>
+<div class="max-w-6xl mx-auto px-6">
+    <section class="bg-white my-8 p-8 rounded-xl">
+        @foreach(var item in bookItems)
+        {
+            var shape = await ContentItemDisplayManager.BuildDisplayAsync(item, null, "Summary");
+            @await DisplayAsync(shape);
+        }
+    </section>
+</div>

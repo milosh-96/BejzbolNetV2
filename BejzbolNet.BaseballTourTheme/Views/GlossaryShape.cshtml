@@ -22,7 +22,7 @@
  *@
 <div class="max-w-6xl mx-auto px-6">
    <script asp-name="@ResourceNames.GlossaryView" at="Foot" type="module"></script>
-    <glossary-view glossaryId="@Model.GlossaryId" searchPlaceholder="@T["Search for a term..."]"></glossary-view>
+    <glossary-view culture="@Orchard.CultureName()" glossaryId="@Model.GlossaryId" searchPlaceholder="@T["Search for a term..."]"></glossary-view>
    </div>
 
 @* </div>

@@ -20,7 +20,7 @@ msgid "Related Terms"
 msgstr "Povezano"
 
 msgctxt "BejzbolNet.BaseballTourTheme.Views.Zone-PostSidebar"
-msgid " Additional Content"
+msgid "Additional Content"
 msgstr "Dodatno"
 
 

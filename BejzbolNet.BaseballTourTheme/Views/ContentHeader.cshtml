@@ -7,13 +7,22 @@
                 @{
                     var containedPart = Model.ContentItem.Content.ContainedPart;
                     string? containedPartId = containedPart is not null ? (string)containedPart.ListContentItemId : null;
+                
+                    ContentItem parent = null;
+                }
+                @if(Model.Parent != null)
+                {
+                    parent = Model.Parent;
+                }
+                else if (containedPartId is not null)
+                {
+                    parent = await Orchard.GetContentItemByIdAsync(containedPartId);
                 }
 
-                @if (containedPartId is not null)
+                @if(parent is not null) 
                 {
-                    var parent = await Orchard.GetContentItemByIdAsync(containedPartId);
                     <a display-for="@parent" class="hover:opacity-80 transition-opacity">@parent.DisplayText</a>
-                    <span class="opacity-50">/</span>
+                        <span class="opacity-50">/</span>
                 }
                 <span class="opacity-70">@Model.ContentItem.DisplayText</span>
             </nav>
