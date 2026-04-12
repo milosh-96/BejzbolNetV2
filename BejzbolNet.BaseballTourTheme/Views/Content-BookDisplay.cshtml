@@ -1,10 +1,15 @@
 @using OrchardCore.ContentFields.Indexing.SQL
 @using OrchardCore.ContentLocalization.Records
 @using OrchardCore.ContentManagement.Display
+@using YesSql;
 @inject IContentItemDisplayManager ContentItemDisplayManager 
+@inject ISession _session
 @{
-    string bookId = Model.ContentItem.Content.ContentMenuItemPart.SelectedContentItem.ContentItemIds[0];
-    var bookItems = (await Orchard.QueryListItemsAsync(bookId)).Where(x => x.Content.LocalizationPart.Culture == Orchard.CultureName());
+    string contentItemId = Model.ContentItem.ContentItemId;
+    List<ContentItem> bookItems = await _session.Query<ContentItem, ContentPickerFieldIndex>(x =>
+        x.SelectedContentItemId == contentItemId).ToAsyncEnumerable().ToListAsync();
+
+        RenderTitleSegments(Model.ContentItem.DisplayText);
 }
 
 <shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem"></shape>

@@ -13,7 +13,7 @@ export class GlossaryView extends LitElement {
 
   getData() {
         let items = [];
-        fetch('/api/queries/searchglossaryterm?parameters={"glossaryId":"' + this.glossaryId + '","culture": "'+this.culture+'"} ')
+        fetch('/api/queries/searchglossaryterm?parameters={"culture": "'+this.culture+'"} ')
       .then((response) => response.json())
       .then((data) => { this.items = data.items; this.filtered = this.items; })
       .catch((e) => console.log(e));

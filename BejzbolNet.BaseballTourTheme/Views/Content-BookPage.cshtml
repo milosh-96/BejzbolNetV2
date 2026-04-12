@@ -2,18 +2,11 @@
 @using OrchardCore.ContentLocalization.Records
 @{
     ContentItem contentItem = Model.ContentItem;
-    var containedPart = contentItem.Content.ContainedPart;
-    string containedPartId = (string)containedPart.ListContentItemId;
+    var parentPart = contentItem.Content.ParentPart;
+    string parentId = (string)parentPart.SelectedContentItem.ContentItemIds[0];
 
-    var parent = await Orchard.GetContentItemByIdAsync(containedPartId);
-    var displayPage = (await Orchard.QueryContentItemsAsync(query =>
-    query.With<ContentPickerFieldIndex>(index =>
-        index.ContentType == "BookDisplay" &&
-        index.ContentPart == "ContentMenuItemPart" &&
-        index.SelectedContentItemId == parent.ContentItemId)
-     .With<LocalizedContentItemIndex>(index =>
-        index.Culture == Orchard.CultureName())
-)).FirstOrDefault();
+    var parent = await Orchard.GetContentItemByIdAsync(parentId);
+    var displayPage = parent;
 }
 
 <shape Type="ContentHeader" prop-ContentItem="@Model.ContentItem" prop-Parent="@displayPage"></shape>

@@ -4,21 +4,14 @@
 @using OrchardCore.ContentManagement.Records
 @{
     ContentItem contentItem = Model.ContentItem;
-    var containedPart = contentItem.Content.ContainedPart;
-    string containedPartId = (string)containedPart.ListContentItemId;
-    var parent = await Orchard.GetContentItemByIdAsync(containedPartId);
-
-    var displayPage = (await Orchard.QueryContentItemsAsync(query =>
-    query.With<ContentPickerFieldIndex>(index =>
-        index.ContentType == "GlossaryPage" &&
-        index.ContentPart == "ContentMenuItemPart" &&
-        index.SelectedContentItemId == parent.ContentItemId)
-     .With<LocalizedContentItemIndex>(index =>
-        index.Culture == Orchard.CultureName())
-)).FirstOrDefault();
+    var parent = await Orchard.GetContentItemByIdAsync((string)Model.ContentItem.Content.ParentPart.SelectedContentItem.ContentItemIds[0]);
+    ContentItem? displayPage = null;
+    if(parent is not null)
+    {
+        displayPage = parent;
+    }
     RenderTitleSegments(contentItem.DisplayText);
 }
-
 <main class="flex-grow">
     <div class="bg-accent min-h-screen py-12">
         <div class="max-w-4xl mx-auto px-6">
