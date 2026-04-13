@@ -12,5 +12,11 @@
       "differentiator": "BlogPost-Subtitle",
       "place": "-"
     }
+  ],
+  "ContentPickerField": [
+    {
+      "contentPart": [ "ParentPart" ],
+      "place": "-"
+    }
   ]
 }
