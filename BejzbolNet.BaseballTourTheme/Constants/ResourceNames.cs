@@ -7,4 +7,6 @@ public static class ResourceNames
 
     // Web Components
     public const string GlossaryView = nameof(GlossaryView);
+
+    public const string WebVitalsLog = nameof(WebVitalsLog);
 }

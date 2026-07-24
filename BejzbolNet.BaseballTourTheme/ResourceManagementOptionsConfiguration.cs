@@ -25,6 +25,10 @@ public class ResourceManagementOptionsConfiguration : IConfigureOptions<Resource
             .SetUrl("~/BejzbolNet.BaseballTourTheme/js/glossary-view/GlossaryView.js")
             .SetVersion("1.0.0")
             .SetDependencies([ResourceNames.TailwindCss, ResourceNames.LucideIcons]);
+
+        _manifest.DefineScript(ResourceNames.WebVitalsLog)
+            .SetUrl("~/BejzbolNet.BaseballTourTheme/js/web-vitals-log.js")
+            .SetVersion("1.0.0");
     }
 
     public void Configure(ResourceManagementOptions options)

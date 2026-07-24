@@ -32,4 +32,8 @@
   <ItemGroup>
     <Folder Include="styles\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\web-vitals-log.js" />
+  </ItemGroup>
 </Project>
